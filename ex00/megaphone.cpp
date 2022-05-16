@@ -1,5 +1,11 @@
 #include <iostream>
 
+__attribute__((destructor))
+void check_leaks() {
+	std::cout << std::endl;
+	system("leaks megaphone");
+}
+
 int main(int argc, char *argv[])
 {
 	if (argc == 1)
