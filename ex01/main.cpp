@@ -5,7 +5,7 @@
 __attribute__((destructor))
 void check_leaks() {
 	std::cout << std::endl;
-	system("leaks phonebook");
+	system("leaks -q phonebook");
 }
 
 int main(void) {

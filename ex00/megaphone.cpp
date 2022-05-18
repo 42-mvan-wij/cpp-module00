@@ -3,7 +3,7 @@
 __attribute__((destructor))
 void check_leaks() {
 	std::cout << std::endl;
-	system("leaks megaphone");
+	system("leaks -q megaphone");
 }
 
 int main(int argc, char *argv[])
