@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 	}
 	for (int i = 1; i < argc; i++)
 	{
-		for (char *s = argv[i]; *s; s++)
+		for (char *s = argv[i]; *s != '\0'; s++)
 			std::cout << static_cast<char>(std::toupper(*s));
 	}
 	std::cout << std::endl;
