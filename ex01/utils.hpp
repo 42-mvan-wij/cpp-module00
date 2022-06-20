@@ -7,7 +7,7 @@
 
 namespace utils {
 
-	std::string	prompt(std::string prompt_text);
+	std::string	prompt(std::string prompt_text, bool allow_empty = true);
 	void print_pad_trunc(std::string &str, unsigned int width);
 
 	template<typename T>

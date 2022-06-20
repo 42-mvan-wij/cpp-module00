@@ -3,21 +3,11 @@
 #include <iomanip>
 
 Contact::Contact() {
-	first_name = utils::prompt("First Name: ");
-	if (first_name == "")
-		throw std::invalid_argument("No empty fields allowed");
-	last_name = utils::prompt("Last Name: ");
-	if (last_name == "")
-		throw std::invalid_argument("No empty fields allowed");
-	nickname = utils::prompt("Nickname: ");
-	if (nickname == "")
-		throw std::invalid_argument("No empty fields allowed");
-	phone_number = utils::prompt("Phone Number: ");
-	if (phone_number == "")
-		throw std::invalid_argument("No empty fields allowed");
-	darkest_secret = utils::prompt("Darkest Secret: ");
-	if (darkest_secret == "")
-		throw std::invalid_argument("No empty fields allowed");
+	first_name = utils::prompt("First Name: ", false);
+	last_name = utils::prompt("Last Name: ", false);
+	nickname = utils::prompt("Nickname: ", false);
+	phone_number = utils::prompt("Phone Number: ", false);
+	darkest_secret = utils::prompt("Darkest Secret: ", false);
 }
 
 Contact::~Contact() {}

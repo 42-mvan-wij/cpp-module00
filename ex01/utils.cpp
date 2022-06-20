@@ -6,12 +6,15 @@
 
 namespace utils {
 
-	std::string	prompt(std::string prompt_text)
+	std::string	prompt(std::string prompt_text, bool allow_empty = true)
 	{
 		std::string	input;
 
 		std::cout << prompt_text;
 		std::getline(std::cin, input);
+
+		if (!allow_empty && input == "")
+			throw std::invalid_argument("No empty fields allowed");
 		return (input);
 	}
 
