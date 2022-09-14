@@ -1,4 +1,6 @@
 #pragma once
+#ifndef CONTACT_H
+# define CONTACT_H
 
 #include <iostream>
 #include <string>
@@ -21,3 +23,5 @@ class Contact {
 		void	print_basic();
 		void	print();
 };
+
+#endif

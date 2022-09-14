@@ -34,7 +34,14 @@ void	PhoneBook::add() {
 
 void	PhoneBook::display() {
 	std::cout << "     index|first name| last name|  nickname" << std::endl;
-	for (int i = 0; i < contact_count; i++) {
+	for (int i = contact_index; i < contact_count; i++) {
+		Contact *contact = contacts[i];
+		utils::print_pad(i, 10);
+		std::cout << "|";
+		contact->print_basic();
+		std::cout << std::endl;
+	}
+	for (int i = 0; i < contact_index; i++) {
 		Contact *contact = contacts[i];
 		utils::print_pad(i, 10);
 		std::cout << "|";

@@ -1,6 +1,5 @@
 #include <iostream>
 
-__attribute__((destructor))
 void check_leaks() {
 	std::cout << std::endl;
 	system("leaks -q megaphone");
@@ -8,6 +7,7 @@ void check_leaks() {
 
 int main(int argc, char *argv[])
 {
+	atexit(&check_leaks);
 	if (argc == 1)
 	{
 		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
@@ -15,8 +15,8 @@ int main(int argc, char *argv[])
 	}
 	for (int i = 1; i < argc; i++)
 	{
-		for (char *s = argv[i]; *s != '\0'; s++)
-			std::cout << static_cast<char>(std::toupper(*s));
+		for (int j = 0; argv[i][j] != '\0'; j++)
+			std::cout << static_cast<char>(std::toupper(argv[i][j]));
 	}
 	std::cout << std::endl;
 	return (0);

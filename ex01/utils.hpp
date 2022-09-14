@@ -1,4 +1,6 @@
 #pragma once
+#ifndef UTILS_H
+# define UTILS_H
 
 # include <string>
 # include <sstream>
@@ -24,3 +26,5 @@ namespace utils {
 	}
 
 }
+
+#endif
