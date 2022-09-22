@@ -6,7 +6,7 @@
 #    By: mvan-wij <mvan-wij@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/10/27 13:16:39 by mvan-wij      #+#    #+#                  #
-#    Updated: 2022/09/15 13:05:48 by mvan-wij      ########   odam.nl          #
+#    Updated: 2022/09/22 16:22:01 by mvan-wij      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,8 @@ $(NAME): $(OBJECTS)
 
 	@$(call print_prefix,"$(PROJECT)","make")
 	@printf "$(BLUE_FG)$(NAME)$(RESET_COLOR) created\n"
+
+	@echo $(MAKE_DATA) > $(DATA_FILE)
 
 
 $(OBJDIR)/%.o: %.cpp $(HEADERS)
