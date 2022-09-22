@@ -6,7 +6,7 @@
 #    By: mvan-wij <mvan-wij@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/10/27 13:16:39 by mvan-wij      #+#    #+#                  #
-#    Updated: 2022/09/15 12:52:38 by mvan-wij      ########   odam.nl          #
+#    Updated: 2022/09/15 13:07:16 by mvan-wij      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,43 +24,23 @@ exec_no_nl = printf "$(1)$(CLEAR_REST_OF_LINE)\n"; $(1); printf "\e[A"
 
 PROJECT		:= ex02-dream-job
 NAME		:= dream-job
-NAME_BONUS	:= dream-job
-
-LIBFT		:=
-MINILIBX	:=
 
 CC			:= c++
-CFLAGS		+= -Wall -Wextra -Werror -std=c++98 $(if $(DEBUG), -g3) $(if $(SANITIZE), -fsanitize=address -g3)
+CFLAGS		+= -Wall -Wextra -Werror -std=c++98 -pedantic $(if $(DEBUG), -g)
 
 ################################################################################
 
-USER_LIBS +=
-SYSTEM_LIBS +=
-FRAMEWORKS +=
 HEADERS := $(wildcard *.h *.hpp)
 SOURCES := $(wildcard *.cpp)
-
-################################################################################
-
-ifdef BONUS
-NAME	:= $(NAME_BONUS)
-HEADERS +=
-SOURCES	+=
-CFLAGS	+= -DBONUS
-endif
 
 ################################################################################
 
 OBJDIR := obj
 OBJECTS := $(addprefix $(OBJDIR)/, $(SOURCES:cpp=o))
 INCLUDE_FLAGS += $(addprefix -I, $(sort $(dir $(HEADERS))))
-LIB_FLAGS += $(addprefix -L, $(sort $(dir $(USER_LIBS)))) $(addprefix -l, $(SYSTEM_LIBS) $(patsubst lib%,%,$(basename $(notdir $(USER_LIBS))))) $(addprefix -framework , $(FRAMEWORKS))
-
-export CFLAGS := $(sort $(CFLAGS))
-export LIB_FLAGS := $(LIB_FLAGS)
 
 DATA_FILE := .make_data.txt
-MAKE_DATA := $(CFLAGS) $(LIB_FLAGS) $(INCLUDE_FLAGS) $(sort $(OBJECTS))
+MAKE_DATA := $(CFLAGS) $(INCLUDE_FLAGS) $(sort $(OBJECTS))
 ifneq ($(shell echo $(MAKE_DATA)), $(shell cat "$(DATA_FILE)" 2> /dev/null))
 PRE_RULES := clean
 endif
@@ -69,9 +49,10 @@ endif
 
 all: $(PRE_RULES) $(NAME)
 
-$(NAME): $(USER_LIBS) $(OBJECTS)
+$(NAME): $(OBJECTS)
 	@$(call print_prefix,"$(PROJECT)","make")
-	$(CC) $(CFLAGS) $(OBJECTS) $(LIB_FLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJECTS) -o $(NAME)
+
 	@$(call print_prefix,"$(PROJECT)","make")
 	@printf "$(BLUE_FG)$(NAME)$(RESET_COLOR) created\n"
 
@@ -97,9 +78,6 @@ fclean: clean
 
 re: fclean all
 
-run: $(NAME)
-	@./$(NAME) $(ARGS)
-
-.PHONY: all debug clean fclean re sources
+.PHONY: all debug clean fclean re
 
 ################################################################################

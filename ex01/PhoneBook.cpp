@@ -18,7 +18,7 @@ void	PhoneBook::add() {
 	Contact *new_contact;
 	try {
 		new_contact = new Contact();
-	} catch (const std::invalid_argument& e) {
+	} catch (const std::exception& e) {
 		std::cerr << "Failed to create new contact: " << e.what() << std::endl;
 		return ;
 	}
@@ -30,7 +30,7 @@ void	PhoneBook::add() {
 	contact_index %= 8;
 	if (contact_count < 8)
 		contact_count++;
-};
+}
 
 void	PhoneBook::display() {
 	std::cout << "     index|first name| last name|  nickname" << std::endl;
@@ -48,7 +48,7 @@ void	PhoneBook::display() {
 		contact->print_basic();
 		std::cout << std::endl;
 	}
-};
+}
 
 void	PhoneBook::search() {
 	std::string index_str = utils::prompt("Index of entry: ");
@@ -63,4 +63,4 @@ void	PhoneBook::search() {
 		return ;
 	}
 	contacts[index]->print();
-};
+}

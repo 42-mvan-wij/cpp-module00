@@ -28,5 +28,5 @@ int main(void) {
 		else if (str == "EXIT" || str == "exit")
 			break ;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
